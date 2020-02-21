@@ -420,19 +420,15 @@ def inorder(node, memo):
         inorder(node.right, memo)
 
 def inorder_iterative(root):
-    node = root
     stack = []
-    while True:
-        if node is not None:
+    while stack or node:
+        if node:
             stack.append(node)
             node = node.left
         else:
-            if len(stack) > 0:
-                node = stack.pop()
-                # Do stuff here...
-                node = node.right
-            else:
-                break
+            node = stack.pop()
+            yield node.element
+            node = node.right
 
 # Breadthfirst traversal.
 # Executes in O(n) time.
