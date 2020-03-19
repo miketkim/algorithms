@@ -441,6 +441,44 @@ def breadthfirst(node):
             queue.append(node.left)
         if node.right:
             queue.append(node.right)
+            
+def levelorder(root):
+    # If you need to return something, then instantiate the data structure here.
+    # rightmost_values = list()
+    # level_sums = list()
+    # levels = list()
+    
+    queue = deque([root])
+    while queue:
+        count = len(queue)
+        while count > 0:
+            root = queue.popleft()
+            
+            # Do something with the value here.
+            # val = root.val
+            # If you want to find right-side view of tree, then do:
+            # rightmost_value = root.val
+            # If you want to find the sum of each row, then do:
+            # level_sum += root.val
+            # If you want to store the values in order, then do:
+            # level.append(root.val)
+            
+            if root.left:
+                queue.append(root.left)
+            if root.right:
+                queue.append(root.right)
+            count -= 1
+            
+        # If you need to build a data structure to return, then do it here.
+        # rightmost_values.append(rightmost_value)
+        # level_sums.append(level_sum)
+        # levels.append(level)
+        
+    # Return any data structure.
+    # return rightmost_values
+    # return level_sums
+    # return levels
+            
 
 # Search binary search tree.
 # Executes in O(h) time.
