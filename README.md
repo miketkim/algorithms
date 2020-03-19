@@ -898,6 +898,17 @@ class Graph:
                     if adjacent_vertex not in visited:
                         queue.append(adjacent_vertex)
         return visited
+        
+    def all_vertices_visited(start, edges):
+        graph = Graph()
+        vertices = set()
+        for edge in edges:
+            u, v = edge
+            vertices.add(u)
+            vertices.add(v)
+            graph.add_edge(u, v)
+        visited = graph.bfs(start)
+        return len(visited) == len(vertices)
 ```
 
 ## Trends
