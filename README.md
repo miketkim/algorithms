@@ -947,6 +947,7 @@ See [Jump Game III](https://leetcode.com/problems/jump-game-iii/)
 
 **For dependencies in a graph, use topological ordering.**
 
+See [Course Schedule](https://leetcode.com/problems/course-schedule/)
 See [Course Schedule II](https://leetcode.com/problems/course-schedule-ii/)
 
 ```python
