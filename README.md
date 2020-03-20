@@ -914,7 +914,10 @@ class Graph:
         return visited
 ```
 
+**All vertices visited or a particular vertex visited:**
+
 See [Keys and Rooms](https://leetcode.com/problems/keys-and-rooms/)
+See [Jump Game III](https://leetcode.com/problems/jump-game-iii/)
 
 ```python
 def all_vertices_visited(start, edges):
