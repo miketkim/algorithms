@@ -879,6 +879,7 @@ class Graph:
     def add_edge(self, vertex1, vertex2):
         self.graph[vertex1].append(vertex2)
 
+    # Time complexity O(V + E)
     def dfs_iterative(self, start):
         visited = set()
         stack = [start]
@@ -891,6 +892,7 @@ class Graph:
                         stack.append(adjacent_vertex)
         return visited
 
+    # Time complexity O(V + E)
     def dfs_recursive(self, start, visited):
         visited.add(start)
         yield start
@@ -898,6 +900,7 @@ class Graph:
             if adjacent_vertex not in visited:
                 self.dfs_recursive(adjacent_vertex, visited)
 
+    # Time complexity O(V + E)
     def bfs(self, start):
         visited = set()
         queue = [start]
@@ -909,17 +912,21 @@ class Graph:
                     if adjacent_vertex not in visited:
                         queue.append(adjacent_vertex)
         return visited
-        
-    def all_vertices_visited(start, edges):
-        graph = Graph()
-        vertices = set()
-        for edge in edges:
-            u, v = edge
-            vertices.add(u)
-            vertices.add(v)
-            graph.add_edge(u, v)
-        visited = graph.bfs(start)
-        return len(visited) == len(vertices)
+```
+
+See [Keys and Rooms](https://leetcode.com/problems/keys-and-rooms/)
+
+```python
+def all_vertices_visited(start, edges):
+    graph = Graph()
+    vertices = set()
+    for edge in edges:
+        u, v = edge
+        vertices.add(u)
+        vertices.add(v)
+        graph.add_edge(u, v)
+    visited = graph.bfs(start)
+    return len(visited) == len(vertices)
 ```
 
 ## Trends
