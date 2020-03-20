@@ -869,15 +869,16 @@ def longest_common_subsequence_solution(s1, s2, matrix):
 ## Searches
 
 ```python
-from collections import defaultdict
+from collections import defaultdict, deque
 
 
 class Graph:
-    def __init__(self):
-        self.graph = defaultdict(list)
+    def __init__(self, num_vertices):
+        self.num_vertices = num_vertices
+        self.adjacency_list = defaultdict(list)
 
-    def add_edge(self, vertex1, vertex2):
-        self.graph[vertex1].append(vertex2)
+    def add_edge(self, u, v):
+        self.adjacency_list[u].append(v)
 
     # Time complexity O(V + E)
     def dfs_iterative(self, start):
@@ -887,7 +888,7 @@ class Graph:
             vertex = stack.pop()
             if vertex not in visited:
                 visited.add(vertex)
-                for adjacent_vertex in self.graph[vertex]:
+                for adjacent_vertex in self.adjacency_list[vertex]:
                     if adjacent_vertex not in visited:
                         stack.append(adjacent_vertex)
         return visited
@@ -896,28 +897,57 @@ class Graph:
     def dfs_recursive(self, start, visited):
         visited.add(start)
         yield start
-        for adjacent_vertex in self.graph[start]:
+        for adjacent_vertex in self.adjacency_list[start]:
             if adjacent_vertex not in visited:
                 self.dfs_recursive(adjacent_vertex, visited)
 
     # Time complexity O(V + E)
     def bfs(self, start):
         visited = set()
-        queue = [start]
+        queue = deque([start])
         while queue:
-            vertex = queue.pop(0)
+            vertex = queue.popleft()
             if vertex not in visited:
                 visited.add(vertex)
-                for adjacent_vertex in self.graph[vertex]:
+                for adjacent_vertex in self.adjacency_list[vertex]:
                     if adjacent_vertex not in visited:
                         queue.append(adjacent_vertex)
         return visited
+        
+    # Time complexity O(V + E)
+    def topological_sort(self):
+        in_degree = [0] * self.num_vertices
+        for vertex in self.adjacency_list:
+            for adjacent_vertex in self.adjacency_list[vertex]:
+                in_degree[adjacent_vertex] += 1
+        queue = deque()
+        for i in range(self.num_vertices):
+            if in_degree[i] == 0:
+                queue.append(i)
+        count = 0
+        top_order = list()
+        while queue:
+            vertex = queue.popleft()
+            top_order.append(vertex)
+            for adjacent_vertex in self.adjacency_list[vertex]:
+                in_degree[adjacent_vertex] -= 1
+                if in_degree[adjacent_vertex] == 0:
+                    queue.append(adjacent_vertex)
+            count += 1
+        if count != self.num_vertices:
+            raise Exception('Cycle in graph.')
+        else:
+            return top_order
 ```
 
 **All vertices visited or a particular vertex visited:**
 
 See [Keys and Rooms](https://leetcode.com/problems/keys-and-rooms/)
 See [Jump Game III](https://leetcode.com/problems/jump-game-iii/)
+
+**For dependencies in a graph, use topological ordering.**
+
+See [Course Schedule II](https://leetcode.com/problems/course-schedule-ii/)
 
 ```python
 def all_vertices_visited(start, edges):
