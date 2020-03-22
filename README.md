@@ -915,6 +915,8 @@ class Graph:
         return visited
         
     # Time complexity O(V + E)
+    # Use on directed, acyclic graphs.
+    # A directed graph only has a topologicla ordering if it is acyclic.
     def topological_sort(self):
         in_degree = [0] * self.num_vertices
         for vertex in self.adjacency_list:
