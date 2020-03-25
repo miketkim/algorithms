@@ -1,3 +1,11 @@
+# System Design
+
+- Design Instagram
+- Design keyword search in Facebook posts
+- Design Leetcode contest and leaderboard
+- Design content publishing site with privacy restrictions
+- Design top 10 songs played by a user in Spotify
+
 # Data Structures
 
 ## Python `set()`
