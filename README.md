@@ -556,7 +556,12 @@ class Heap:
             self.heapify()
 
     def heapify(self):
+        """Convert array into a heap."""
+        
+        # Find the parent.
         start = self.parent(len(self) - 1)
+        
+        # Working towards the front of the array, bubble each element down.
         for j in range(start, -1, -1):
             self.bubble_down(j)
 
@@ -567,34 +572,42 @@ class Heap:
         return len(self.heap) == 0
 
     def parent(self, j):
+        """Parent of current element."""
         return (j - 1) // 2
 
     def left(self, j):
+        """Left child of current element."""
         return 2 * j + 1
 
     def right(self, j):
+        """Right child of current element."""
         return 2 * j + 2
 
     def has_left(self, j):
+        """Whether element has left child."""
         return self.left(j) < len(self.heap)
 
     def has_right(self, j):
+        """Whether element has right child."""
         return self.right(j) < len(self.heap)
 
     def swap(self, i, j):
         self.heap[i], self.heap[j] = self.heap[j], self.heap[i]
 
     def add(self, element):
+        """Insert an element into the heap."""
         self.heap.append(element)
         self.bubble_up(len(self.heap) - 1)
 
     def min(self):
+        """Read minimum element from the heap."""
         if self.is_empty():
             raise Exception('This heap is empty.')
         element = self.heap[0]
         return element
 
     def remove_min(self):
+        """Remove minimum element from the heap."""
         if self.is_empty():
             raise Exception('This heap is empty.')
         self.swap(0, len(self.heap) - 1)
@@ -603,12 +616,23 @@ class Heap:
         return element
 
     def bubble_up(self, index):
+        """Restore heap-order by moving the element up the heap."""
+        
+        # Look at the element's parent. If the element at the given index has 
+        # a smaller value than that of it's parent, swap the values. And bubble up.
         parent = self.parent(index)
         if index > 0 and self.heap[index] < self.heap[parent]:
             self.swap(index, parent)
             self.bubble_up(index)
 
     def bubble_down(self, index):
+        """Restore heap-order by moving the element down the heap."""
+        
+        # Look at left and right children of the element at the given index.
+        # If both children exist, take the one with the smallest value.
+        # If one child is missing, take the other one.
+        # If the chosen child has a smaller value than the element at the given index, 
+        # then swap them and continue bubbling down.
         if self.has_left(index):
             left = self.left(index)
             small_child = left
