@@ -318,6 +318,13 @@ class LinkedDeque(DoublyLinkedList):
         return self.remove(self.tail.prev_node)
 ```
 
+## Tries
+
+- Use for text processing.
+- Pre-process the text before performing searches.
+- High initial cost of pre-processing the text, but subsequent queries are cheap.
+- Use for pattern matching and prefix matching.
+
 ## Tree
 
 ### Binary Tree
