@@ -1397,3 +1397,28 @@ def binary_search(items, start, end, search_item):
     else:
         return -1
 ```
+
+## Arrays
+
+### Techniques
+
+- Find pair(s) of numbers whose sum equals target.
+  - Use dictionary to store seen values.
+  - Check dictionary to see if difference between target and current element is present.
+- Find whether subarray(s) have sum equals zero.
+  - Use set to store sum of all elements up to the current index.
+  - Check if sum contains current value.
+- Find all subarrays whose sum equals zero.
+  - Keep track of sum so far.
+  - Use defaultdict(list) to store sum so far at each index.
+  - Store 0 at index -1.
+  - Check defaultdict(list) for presence of sum.
+  - Subarray is {<index of previous sum>, ..., <current index>}
+    
+### Sliding Window
+
+### Two Pointers
+
+### Level Order Tree Traversal
+
+### Two Heaps
