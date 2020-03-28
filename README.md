@@ -5,6 +5,20 @@
 - Design Leetcode contest and leaderboard
 - Design content publishing site with privacy restrictions
 - Design top 10 songs played by a user in Spotify
+- Design phone bill calculator
+
+# Behavioral
+
+- Tell me about a challenge you faced on a project and how you managed to solve it.
+- Tell me about a time you received positive feedback from your manager.
+- Tell me about a time when you went out of your comfort zone.
+- Tell me about a time when you gave a simple solution to a complex problem.
+- Tell me about a time when you disagreed with your manager/team member.
+- Tell me about a time when you have innovated something.
+- Tell me about a time when you solved a complex problem.
+- Tell me about a time when you missed a deadline.
+- Tell me about a time when you received a negative feedback.
+- Tell me about a time when you took a quick decision based on the datapoints.
 
 # Data Structures
 
