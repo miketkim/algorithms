@@ -969,26 +969,36 @@ class Graph:
         
     # Time complexity O(V + E)
     # Use on directed, acyclic graphs.
-    # A directed graph only has a topologicla ordering if it is acyclic.
+    # A directed graph only has a topological ordering if it is acyclic.
     def topological_sort(self):
         in_degree = [0] * self.num_vertices
+        
+        # Build the graph.
         for vertex in self.adjacency_list:
             for adjacent_vertex in self.adjacency_list[vertex]:
                 in_degree[adjacent_vertex] += 1
-        queue = deque()
+                
+        # Find the sources (all of the vertices with no in-degrees).
+        sources = deque()
         for i in range(self.num_vertices):
             if in_degree[i] == 0:
-                queue.append(i)
+                sources.append(i)
+                
         count = 0
         top_order = list()
-        while queue:
-            vertex = queue.popleft()
+        
+        # For each source, add it to the sorted list and subtract 1 from all of it's children's in-degrees.
+        # If a child's in-degree is 0, add it to the sources queue.
+        while sources:
+            vertex = sources.popleft()
             top_order.append(vertex)
             for adjacent_vertex in self.adjacency_list[vertex]:
                 in_degree[adjacent_vertex] -= 1
                 if in_degree[adjacent_vertex] == 0:
-                    queue.append(adjacent_vertex)
+                    sources.append(adjacent_vertex)
             count += 1
+            
+        # If the count does not equal the number of vertices, then there is a cycle in the graph.
         if count != self.num_vertices:
             raise Exception('Cycle in graph.')
         else:
