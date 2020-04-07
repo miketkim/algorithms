@@ -6,6 +6,7 @@
 - Design content publishing site with privacy restrictions
 - Design top 10 songs played by a user in Spotify
 - Design phone bill calculator
+- Design text editor typeahead suggestions
 
 # Behavioral
 
